@@ -10,8 +10,8 @@ const SYSTEMTIME MOONG::FileInfo::getCreationTime(HANDLE param_handle/* = NULL*/
 
 	if (param_handle == NULL)
 	{
-		// TODO: 현재 프로세스 핸들 얻기
-		handle = CreateFileA("test.txt", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		// TODO: 파일 이름 동적으로 자기 자신의 이름을 얻도록 수정
+		handle = CreateFileA("FileInfo.exe", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (handle == INVALID_HANDLE_VALUE)
 		{
 			return localTime;
