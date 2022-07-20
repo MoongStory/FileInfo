@@ -65,7 +65,7 @@ const std::string MOONG::FileInfo::getFileName(const HMODULE hModule/* = NULL*/)
 
 	_splitpath_s(MOONG::FileInfo::getFilePath(hModule).c_str(), drive, sizeof(drive), dir, sizeof(dir), file_name, sizeof(file_name), file_extension, sizeof(file_extension));
 
-	return std::string(file_name) + "." + std::string(file_extension);
+	return std::string(file_name) + std::string(file_extension);
 }
 
 const std::string MOONG::FileInfo::getFileNameWithoutFileExtension(const HMODULE hModule/* = NULL*/)
