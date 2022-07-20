@@ -45,7 +45,6 @@ const std::string MOONG::FileInfo::getFilePath(const HMODULE hModule/* = NULL*/)
 
 	if (process_handle)
 	{
-
 		if (QueryFullProcessImageNameA(process_handle, 0, file_path, &buffer_size))
 		{
 			// ¼º°ø
@@ -59,11 +58,14 @@ const std::string MOONG::FileInfo::getFilePath(const HMODULE hModule/* = NULL*/)
 
 const std::string MOONG::FileInfo::getFileName(const HMODULE hModule/* = NULL*/)
 {
-	char file_name[MAX_PATH] = { 0 };
+	char drive[_MAX_DRIVE] = { 0 };
+	char dir[_MAX_DIR] = { 0 };
+	char file_name[_MAX_FNAME] = { 0 };
+	char file_extension[_MAX_EXT] = { 0 };
 
-	GetFileTitleA(MOONG::FileInfo::getFilePath(hModule).c_str(), file_name, MAX_PATH);
+	_splitpath_s(MOONG::FileInfo::getFilePath(hModule).c_str(), drive, sizeof(drive), dir, sizeof(dir), file_name, sizeof(file_name), file_extension, sizeof(file_extension));
 
-	return file_name;
+	return std::string(file_name) + "." + std::string(file_extension);
 }
 
 const std::string MOONG::FileInfo::getFileNameWithoutFileExtension(const HMODULE hModule/* = NULL*/)
@@ -71,7 +73,7 @@ const std::string MOONG::FileInfo::getFileNameWithoutFileExtension(const HMODULE
 	char drive[_MAX_DRIVE] = { 0 };
 	char dir[_MAX_DIR] = { 0 };
 	char file_name[_MAX_FNAME] = { 0 };
-	char file_extension[_MAX_EXT] = { 0, };
+	char file_extension[_MAX_EXT] = { 0 };
 
 	_splitpath_s(MOONG::FileInfo::getFilePath(hModule).c_str(), drive, sizeof(drive), dir, sizeof(dir), file_name, sizeof(file_name), file_extension, sizeof(file_extension));
 
