@@ -61,5 +61,9 @@ const std::string MOONG::FileInfo::getFilePath(const HMODULE hModule/* = NULL*/)
 
 const std::string MOONG::FileInfo::getFileName()
 {
-	//char file_name
+	char file_name[MAX_PATH] = { 0 };
+
+	GetFileTitleA(MOONG::FileInfo::getFilePath().c_str(), file_name, MAX_PATH);
+
+	return file_name;
 }
