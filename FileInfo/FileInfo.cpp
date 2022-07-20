@@ -10,9 +10,7 @@ const SYSTEMTIME MOONG::FileInfo::getCreationTime(const HANDLE param_handle/* = 
 
 	if (param_handle == NULL)
 	{
-		// TODO: 현재 프로세스 핸들 얻기
-
-		handle = CreateFileA("test.txt", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		handle = CreateFileA(MOONG::FileInfo::getFileName().c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 		if (handle == INVALID_HANDLE_VALUE)
 		{
@@ -59,11 +57,11 @@ const std::string MOONG::FileInfo::getFilePath(const HMODULE hModule/* = NULL*/)
 	return file_path;
 }
 
-const std::string MOONG::FileInfo::getFileName()
+const std::string MOONG::FileInfo::getFileName(const HMODULE hModule/* = NULL*/)
 {
 	char file_name[MAX_PATH] = { 0 };
 
-	GetFileTitleA(MOONG::FileInfo::getFilePath().c_str(), file_name, MAX_PATH);
+	GetFileTitleA(MOONG::FileInfo::getFilePath(hModule).c_str(), file_name, MAX_PATH);
 
 	return file_name;
 }
