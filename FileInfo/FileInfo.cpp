@@ -2,10 +2,10 @@
 #include <sstream>
 #include <string>
 
-#include <Psapi.h>	// GetProcessImageFileNameA() 사용 위해서 필요.
+#include <Psapi.h>	// GetProcessImageFileNameA() 호출 시 필요.
 #pragma comment(lib, "Psapi.lib")
 
-#pragma comment(lib, "Comdlg32.lib")	// GetFileTitle() 사용 위해서 필요.
+#pragma comment(lib, "Comdlg32.lib")	// GetFileTitle() 호출 시 필요.
 
 const SYSTEMTIME MOONG::FileInfo::GetCreationTime(const HANDLE handle/* = NULL*/)
 {
