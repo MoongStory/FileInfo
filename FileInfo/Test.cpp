@@ -9,5 +9,7 @@ int main()
 
 	std::cout << "file name[" << MOONG::FileInfo::getFileName() << "]\n" << std::endl;
 
+	std::cout << "file name without file extension[" << MOONG::FileInfo::getFileNameWithoutFileExtension() << "]\n" << std::endl;
+
 	return 0;
 }

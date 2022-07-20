@@ -22,6 +22,8 @@ namespace MOONG
 		static const SYSTEMTIME getCreationTime(const HANDLE param_handle = NULL);
 		static const std::string getFilePath(const HMODULE hModule = NULL);
 		static const std::string getFileName(const HMODULE hModule = NULL);
+		// FIXME: 적당한 함수 이름 없나?
+		static const std::string getFileNameWithoutFileExtension(const HMODULE hModule = NULL);
 	protected:
 	private:
 	};
