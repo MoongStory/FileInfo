@@ -19,7 +19,9 @@ namespace MOONG
 	private:
 
 	public:
-		static const SYSTEMTIME getCreationTime(HANDLE param_handle = NULL);
+		static const SYSTEMTIME getCreationTime(const HANDLE param_handle = NULL);
+		static const std::string getFilePath(const HMODULE hModule = NULL);
+		static const std::string getFileName();
 	protected:
 	private:
 	};
