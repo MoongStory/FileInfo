@@ -92,7 +92,7 @@ const std::string MOONG::FileInfo::GetFileName(const HANDLE handle/* = NULL*/)
 #else
 	char file_name[MAX_PATH] = {0};
 	
-	GetFileTitleA(MOONG::FileInfo::getFilePath(handle).c_str(), file_name, sizeof(file_name));
+	GetFileTitleA(MOONG::FileInfo::GetFilePath(handle).c_str(), file_name, sizeof(file_name));
 
 	return file_name;
 #endif
@@ -110,7 +110,7 @@ const std::string MOONG::FileInfo::GetFileNameWithoutFileExtension(const HANDLE 
 
 	return file_name;
 #else
-	std::string file_name = MOONG::FileInfo::getFileName();
+	std::string file_name = MOONG::FileInfo::GetFileName();
 
 	return file_name.substr(0, file_name.find('.'));
 #endif
