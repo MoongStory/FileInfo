@@ -19,7 +19,11 @@ namespace MOONG
 	private:
 
 	public:
-		static const SYSTEMTIME getCreationTime(HANDLE param_handle = NULL);
+		static const SYSTEMTIME GetCreationTime(const HANDLE handle = NULL);
+		static const std::string GetFilePath(const HANDLE handle = NULL);
+		static const std::string GetFileName(const HANDLE handle = NULL);
+		// FIXME: 적당한 함수 이름 없나?
+		static const std::string GetFileNameWithoutFileExtension(const HANDLE handle = NULL);
 	protected:
 	private:
 	};
