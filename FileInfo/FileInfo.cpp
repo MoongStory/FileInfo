@@ -7,6 +7,10 @@
 
 #pragma comment(lib, "Comdlg32.lib")	// GetFileTitle() 호출 시 필요.
 
+#pragma comment(lib,"version.lib")		// GetFileVersionInfo() 호출 시 필요.
+
+#include <strsafe.h>
+
 const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NULL*/)
 {
 	SYSTEMTIME local_time = { 0 };
@@ -114,4 +118,51 @@ const std::string MOONG::FileInfo::GetFileNameWithoutFileExtension(const HANDLE 
 
 	return file_name.substr(0, file_name.find('.'));
 #endif
+}
+
+const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_path/* = ""*/)
+{
+	std::string file_path;
+	if (param_file_path.empty() == true)
+	{
+		file_path = MOONG::FileInfo::GetFilePath();
+	}
+	else
+	{
+		file_path = param_file_path;
+	}
+
+	DWORD ver_info_size = GetFileVersionInfoSizeA(file_path.c_str(), 0);
+	if (ver_info_size == 0)
+	{
+		return std::string();
+	}
+
+	char file_version[64] = { 0 };
+
+	char* ver_info = new char[ver_info_size];
+	if (ver_info)
+	{
+		if (GetFileVersionInfoA(file_path.c_str(), 0, ver_info_size, ver_info) != 0)
+		{
+			VS_FIXEDFILEINFO* fixed_file_info = NULL;
+			UINT buf_len = 0;
+
+			if (VerQueryValueA(ver_info, "\\", (LPVOID*)&fixed_file_info, &buf_len) != 0)
+			{
+				WORD major_ver = 0, minor_ver = 0, build_num = 0, revision_num = 0;
+
+				major_ver = HIWORD(fixed_file_info->dwFileVersionMS);
+				minor_ver = LOWORD(fixed_file_info->dwFileVersionMS);
+				build_num = HIWORD(fixed_file_info->dwFileVersionLS);
+				revision_num = LOWORD(fixed_file_info->dwFileVersionLS);
+
+				StringCchPrintfA(file_version, sizeof(file_version), "%d.%d.%d.%d", major_ver, minor_ver, build_num, revision_num);
+			}
+		}
+
+		delete[] ver_info;
+	}
+
+	return file_version;
 }

@@ -11,5 +11,7 @@ int main()
 
 	std::cout << "file name without file extension[" << MOONG::FileInfo::GetFileNameWithoutFileExtension().c_str() << "]\n" << std::endl;
 
+	std::cout << "file version[" << MOONG::FileInfo::GetFileVersion().c_str() << "]\n" << std::endl;
+
 	return 0;
 }
