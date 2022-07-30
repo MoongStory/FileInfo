@@ -68,7 +68,7 @@ BEGIN
         BLOCK "041204b0"
         BEGIN
             VALUE "CompanyName", "MOONG"
-            VALUE "FileDescription", "MOONG"
+            VALUE "FileDescription", "Class for FileInfo"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "FileInfo.exe"
             VALUE "LegalCopyright", "Copyright (C) 2022"
