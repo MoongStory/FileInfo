@@ -2,7 +2,7 @@
 
 int main()
 {
-	SYSTEMTIME creationTime = MOONG::FileInfo::GetCreationTime();
+	SYSTEMTIME creationTime = MOONG::FileInfo::GetFileCreationTime();
 	std::cout << "Year[" << creationTime.wYear << "], month[" << creationTime.wMonth << "], day[" << creationTime.wDay << "], hour[" << creationTime.wHour << "], min[" << creationTime.wMinute << "], sec[" << creationTime.wSecond << "]\n" << std::endl;
 
 	std::cout << "file path[" << MOONG::FileInfo::GetFilePath().c_str() << "]\n" << std::endl;

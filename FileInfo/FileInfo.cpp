@@ -7,7 +7,7 @@
 
 #pragma comment(lib, "Comdlg32.lib")	// GetFileTitle() 호출 시 필요.
 
-const SYSTEMTIME MOONG::FileInfo::GetCreationTime(const HANDLE handle/* = NULL*/)
+const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NULL*/)
 {
 	SYSTEMTIME local_time = { 0 };
 
