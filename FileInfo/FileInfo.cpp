@@ -120,6 +120,17 @@ const std::string MOONG::FileInfo::GetFileNameWithoutFileExtension(const HANDLE 
 #endif
 }
 
+const std::string MOONG::FileInfo::GetFolderName(const HANDLE handle/* = NULL*/)
+{
+	std::string folder_name = MOONG::FileInfo::GetFilePath();
+
+	folder_name = folder_name.substr(0, folder_name.find_last_of('\\'));
+
+	folder_name = folder_name.substr(folder_name.find_last_of('\\') + 1);
+	
+	return std::string(folder_name);
+}
+
 const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_path/* = ""*/)
 {
 	std::string file_path;

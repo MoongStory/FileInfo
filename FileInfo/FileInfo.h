@@ -25,6 +25,8 @@ namespace MOONG
 		static const std::string GetFileName(const HANDLE handle = NULL);
 		static const std::string GetFileNameWithoutFileExtension(const HANDLE handle = NULL);
 
+		static const std::string GetFolderName(const HANDLE handle = NULL);
+
 		// file_path를 빈 문자열을 넘기면 현재 프로세스의 버전을 얻음.
 		static const std::string GetFileVersion(const std::string param_file_path = "");
 	protected:

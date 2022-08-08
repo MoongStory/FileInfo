@@ -13,5 +13,7 @@ int main()
 
 	std::cout << "file version[" << MOONG::FileInfo::GetFileVersion().c_str() << "]\n" << std::endl;
 
+	std::cout << "folder name[" << MOONG::FileInfo::GetFolderName().c_str() << "]\n" << std::endl;
+
 	return 0;
 }
