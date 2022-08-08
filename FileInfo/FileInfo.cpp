@@ -104,20 +104,9 @@ const std::string MOONG::FileInfo::GetFileName(const HANDLE handle/* = NULL*/)
 
 const std::string MOONG::FileInfo::GetFileNameWithoutFileExtension(const HANDLE handle/* = NULL*/)
 {
-#if _MSC_VER > 1200
-	char drive[_MAX_DRIVE] = { 0 };
-	char dir[_MAX_DIR] = { 0 };
-	char file_name[_MAX_FNAME] = { 0 };
-	char file_extension[_MAX_EXT] = { 0 };
-
-	_splitpath_s(MOONG::FileInfo::GetFilePath(handle).c_str(), drive, sizeof(drive), dir, sizeof(dir), file_name, sizeof(file_name), file_extension, sizeof(file_extension));
-
-	return file_name;
-#else
 	std::string file_name = MOONG::FileInfo::GetFileName();
 
 	return file_name.substr(0, file_name.find('.'));
-#endif
 }
 
 const std::string MOONG::FileInfo::GetFolderName(const HANDLE handle/* = NULL*/)
