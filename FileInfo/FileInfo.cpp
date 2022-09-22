@@ -1,4 +1,5 @@
 #include "FileInfo.h"
+
 #include <sstream>
 #include <string>
 
