@@ -2,12 +2,12 @@
 #include <sstream>
 #include <string>
 
-#include <Psapi.h>	// GetProcessImageFileNameA() 호출 시 필요.
+#include <Psapi.h>	// GetProcessImageFileNameA
 #pragma comment(lib, "Psapi.lib")
 
-#pragma comment(lib, "Comdlg32.lib")	// GetFileTitle() 호출 시 필요.
+#pragma comment(lib, "Comdlg32.lib")	// GetFileTitle
 
-#pragma comment(lib,"version.lib")		// GetFileVersionInfo() 호출 시 필요.
+#pragma comment(lib,"version.lib")		// GetFileVersionInfo
 
 #include <strsafe.h>
 
