@@ -12,7 +12,7 @@
 
 #include <strsafe.h>
 
-const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NULL*/)
+const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NULL*/) noexcept(false)
 {
 	SYSTEMTIME local_time = { 0 };
 
@@ -24,7 +24,7 @@ const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NU
 
 		if (process_handle == INVALID_HANDLE_VALUE)
 		{
-			return local_time;
+			throw MOONG::ExceptionFunctionCallFailed();
 		}
 	}
 	else
@@ -45,7 +45,7 @@ const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NU
 	return local_time;
 }
 
-const std::string MOONG::FileInfo::GetFilePath(const HANDLE handle/* = NULL*/)
+const std::string MOONG::FileInfo::GetFilePath(const HANDLE handle/* = NULL*/) noexcept(false)
 {
 	DWORD process_id = GetCurrentProcessId();
 	HANDLE process_handle = NULL;
@@ -75,6 +75,10 @@ const std::string MOONG::FileInfo::GetFilePath(const HANDLE handle/* = NULL*/)
 #endif
 		{
 			// ¼º°ø
+		}
+		else
+		{
+			throw MOONG::ExceptionFunctionCallFailed();
 		}
 
 		CloseHandle(process_handle);
@@ -121,7 +125,7 @@ const std::string MOONG::FileInfo::GetFolderName(const HANDLE handle/* = NULL*/)
 	return std::string(folder_name);
 }
 
-const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_path/* = ""*/)
+const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_path/* = ""*/) noexcept(false)
 {
 	std::string file_path;
 	if (param_file_path.empty() == true)
@@ -136,7 +140,7 @@ const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_p
 	DWORD ver_info_size = GetFileVersionInfoSizeA(file_path.c_str(), 0);
 	if (ver_info_size == 0)
 	{
-		return std::string();
+		throw MOONG::ExceptionFunctionCallFailed();
 	}
 
 	char file_version[64] = { 0 };
