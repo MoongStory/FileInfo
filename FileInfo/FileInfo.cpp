@@ -1,8 +1,5 @@
 #include "FileInfo.h"
 
-// https://github.com/MoongStory/Exception
-#include "../../Exception/Exception/Exception.h"
-
 #include <sstream>
 #include <string>
 
@@ -15,7 +12,7 @@
 
 #include <strsafe.h>
 
-const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NULL*/) noexcept(false)
+const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NULL*/)
 {
 	SYSTEMTIME local_time = { 0 };
 
@@ -24,10 +21,9 @@ const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NU
 	if (handle == NULL)
 	{
 		process_handle = CreateFileA(MOONG::FileInfo::GetFileName().c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-
 		if (process_handle == INVALID_HANDLE_VALUE)
 		{
-			throw MOONG::ExceptionFunctionCallFailed();
+			return local_time;
 		}
 	}
 	else
@@ -48,7 +44,7 @@ const SYSTEMTIME MOONG::FileInfo::GetFileCreationTime(const HANDLE handle/* = NU
 	return local_time;
 }
 
-const std::string MOONG::FileInfo::GetFilePath(const HANDLE handle/* = NULL*/) noexcept(false)
+const std::string MOONG::FileInfo::GetFilePath(const HANDLE handle/* = NULL*/)
 {
 	DWORD process_id = GetCurrentProcessId();
 	HANDLE process_handle = NULL;
@@ -78,10 +74,6 @@ const std::string MOONG::FileInfo::GetFilePath(const HANDLE handle/* = NULL*/) n
 #endif
 		{
 			// ¼º°ø
-		}
-		else
-		{
-			throw MOONG::ExceptionFunctionCallFailed();
 		}
 
 		CloseHandle(process_handle);
@@ -128,7 +120,7 @@ const std::string MOONG::FileInfo::GetFolderName(const HANDLE handle/* = NULL*/)
 	return std::string(folder_name);
 }
 
-const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_path/* = ""*/) noexcept(false)
+const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_path/* = ""*/)
 {
 	std::string file_path;
 	if (param_file_path.empty() == true)
@@ -143,7 +135,7 @@ const std::string MOONG::FileInfo::GetFileVersion(const std::string param_file_p
 	DWORD ver_info_size = GetFileVersionInfoSizeA(file_path.c_str(), 0);
 	if (ver_info_size == 0)
 	{
-		throw MOONG::ExceptionFunctionCallFailed();
+		return std::string("");
 	}
 
 	char file_version[64] = { 0 };
