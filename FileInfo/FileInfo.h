@@ -10,9 +10,6 @@
 #include <iostream>
 #include <Windows.h>
 
-// https://github.com/MoongStory/Exception
-#include "../../Exception/Exception/Exception.h"
-
 namespace MOONG
 {
 	class FileInfo

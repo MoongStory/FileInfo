@@ -1,5 +1,8 @@
 #include "FileInfo.h"
 
+// https://github.com/MoongStory/Exception
+#include "../../Exception/Exception/Exception.h"
+
 #include <sstream>
 #include <string>
 
